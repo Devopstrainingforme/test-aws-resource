@@ -47,8 +47,8 @@ module "db" {
   master_user_password_rotate_immediately           = false
 
   multi_az               = false
-  db_subnet_group_name   = module.vpc.database_subnet_group
-  vpc_security_group_ids = [module.security_group.security_group_id]
+  db_subnet_group_name   = "test-db-subnet-group"
+  vpc_security_group_ids = "sg-0a1b9e8832023aef1"
 
   skip_final_snapshot     = false
   deletion_protection     = false
