@@ -48,7 +48,6 @@ module "db" {
 
   multi_az               = false
   db_subnet_group_name   = "test-db-subnet-group"
-  vpc_security_group_ids = "sg-0a1b9e8832023aef1"
 
   skip_final_snapshot     = false
   deletion_protection     = false
