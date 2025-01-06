@@ -15,7 +15,7 @@ locals {
   }
 }
 module "db" {
-  source = "https://github.com/Devopstrainingforme/RDSModule.git"
+  source = "git::https://github.com/Devopstrainingforme/RDSModule.git"
 
   identifier = local.name
 
