@@ -1,0 +1,41 @@
+name: AWS Instance Destroy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tf_fmt:
+    name: Destroying AWS instance
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout Repo
+      uses: actions/checkout@v1
+
+    - name: Terraform Init
+      id: init
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: '.'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        terraform init -no-color -input=false
+
+    - name: Terraform validate
+      id: validate
+      shell: bash
+      run: |
+        terraform validate -no-color
+
+    - name: Terraform destroy
+      id: plan
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: '.'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        terraform destroy -no-color -auto-approve -input=false
