@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {}
 
 locals {
-  name    = "test23-postgresql"
+  name    = "postgresql-123"
   region  = "us-east-1"
 
   vpc_cidr = "vpc-0f56a538178e0c400"
